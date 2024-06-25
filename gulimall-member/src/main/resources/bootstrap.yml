@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: gulimall-member
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: 127.0.0.1:8848
+        name: gulimall-member.yaml
+        group: dev
+        namespace: eef9070a-e0ab-43ec-95f2-059b783a1dee
+        extension-configs:
+          - dataId: base.yml
+            group: dev
+          - dataId: datasource.yml
+            group: dev
+          - dataId: mybatis.yml
+            group: dev
+          - dataId: logging.yml
+            group: dev
+
+#            refresh: false

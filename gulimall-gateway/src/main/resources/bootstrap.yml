@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gulimall-gateway
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: 127.0.0.1:8848
+        name: gulimall-gateway.yml
+          # group: DEFAULT_GROUP
+        namespace: dda1c9c2-4656-4cd4-9eaf-618a0a78838e
+

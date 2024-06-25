@@ -1,0 +1,37 @@
+server:
+  port: 8002
+#  datasource:
+#    url: jdbc:mysql://192.168.206.135:3306/gulimall_ums?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 8008121038
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#spring:
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#  config:
+#    import:
+#      - nacos:gulimall-member.yaml?refreshEnabled=true
+
+#        暂时关闭导入nacos配置中心配置
+#      config:
+#        import-check:
+#          enabled: false
+
+#logging:
+#  level:
+#    com.atguigu.gulimall: debug
+#  pattern:
+#    dateformat: HH:mm:ss:SSS
+#  file:
+#    path: "logs/${spring.application.name}"
+
+
+#mybatis-plus:
+#  mapper-locations: classpath:mapper/**/*.xml
+#  global-config:
+#    # 自增主键
+#    db-config:
+#      id-type: auto
+
