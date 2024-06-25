@@ -1,0 +1,103 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 1000
+      min-spare: 30
+    connection-timeout: 5000ms
+  port: 8080
+  servlet:
+    context-path: /renren-fast
+
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+
+
+  mvc:
+    path match:
+      matching-strategy: ANT_PATH_MATCHER
+#  resources:
+#    add-mappings: false
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      #暂时关闭导入nacos配置中心配置
+      config:
+        import-check:
+          enabled: false
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: io.renren.modules.*.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+    banner: false
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+
+
+renren:
+  redis:
+    open: false
+  shiro:
+    redis: false
+
+  # APP模块，是通过jwt认证的，如果要使用APP模块，则需要修改【加密秘钥】
+  jwt:
+    # 加密秘钥
+    secret: f4e2e52034348f86b67cde581c0f9eb5[www.renren.io]
+    # token有效时长，7天，单位秒
+    expire: 604800
+    header: token
+
+
+# springdoc-openapi项目访问访问地址: http://127.0.0.1:8080/doc.html
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    # path: 配置swagger-ui.html/UI界面的访问路径,默认为/swagger-ui.html
+    tags-sorter: alpha
+    # tags-sorter: 接口文档中的tags排序规则,默认为alpha,可选值为alpha(按字母顺序排序)或as-is(按照在代码中定义的顺序排序)
+    operations-sorter: alpha
+
+  api-docs:
+    path: /v3/api-docs
+    # path: 配置api-docs的访问路径,默认为/v3/api-docs
+
+  group-configs:
+    # group-configs: 配置分组信息
+    - group: 'default'
+      # group: 分组名称
+      paths-to-match: '/**'
+      # paths-to-match: 配置要匹配的路径,默认为/**
+      packages-to-scan: com.kgc.controller
+      # packages-to-scan: 配置要扫描的包的路径,直接配置为Controller类所在的包名即可
+logging:
+  level:
+    org.springdoc: DEBUG
+
